@@ -1,0 +1,22 @@
+{
+  "name": "nui-backend",
+  "version": "0.0.1",
+  "description": "Backend for Nui apps.",
+  "main": "index.js",
+  "repository": "git@github.com:santana125/nui-backend.git",
+  "author": "Gustavo Santana <gustavofelipe68@gmail.com>",
+  "license": "none",
+  "private": true,
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "sequelize": "^5.15.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "scripts": {
+    "dev": "nodemon src/server.js"
+  }
+
+}
