@@ -5,6 +5,8 @@ const routes = express.Router();
 //const UserController = require('./controllers/UserController');
 
 
-//routes.get('/hello', UserController.store);
+routes.get('/', (req, res) => {
+	return res.json({message:"working"});
+});
 
 module.exports = routes;

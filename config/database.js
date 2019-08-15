@@ -1,9 +1,9 @@
-{
+module.exports = {
   "development": {
     "username": "witfgnmo",
     "password": "5kTryyBBdSeszzEcDPcS8BetAs8eupPn",
     "database": "witfgnmo",
-    "host": "raja.db.elephantsql.com:5432",
+    "host": "raja.db.elephantsql.com",
     "dialect": "postgres",
     "operatorsAliases": false
   },
