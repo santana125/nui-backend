@@ -7,6 +7,7 @@ const app = express();
 
 mongoose.connect('mongodb+srv://nuiadm:KAPMpgyBYJhazyj3@nui-lcjgk.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser:true,
+    useCreateIndex: true,
 });
 
 app.use(cors());

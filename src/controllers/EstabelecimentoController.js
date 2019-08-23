@@ -3,6 +3,11 @@ const Estabelecimento = require('../models/Estabelecimento');
 const UsuarioController = require('../controllers/UsuarioController');
 
 module.exports = {
+    async index(req, res){
+        estabelecimentos = await Estabelecimento.find();
+
+        return res.json(estabelecimentos);
+    },
     async store(req, res){
         const { nome,
                 telefone,

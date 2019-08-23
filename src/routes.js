@@ -5,5 +5,6 @@ const routes = express.Router();
 
 routes.post('/user', UsuarioController.store);
 routes.post('/estabelecimento', EstabelecimentoController.store);
+routes.get('/estabelecimentos', EstabelecimentoController.index);
 
 module.exports = routes;
