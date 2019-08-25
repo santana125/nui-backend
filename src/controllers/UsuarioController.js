@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const Usuario = require('../models/Usuario');
 
 
@@ -16,7 +17,7 @@ module.exports ={
         if (emailInUse)
             return res.json({error: "Email já cadastrado."});
 
-        const usuario = await Usuario.create({
+        const usuario = new Usuario({
             nome,
             email,
             senha,
@@ -24,7 +25,21 @@ module.exports ={
             estabelecimentoId,
         });
 
-        return res.json(usuario);
+				bcrypt.genSalt(10, (err, salt) => {
+					bcrypt.hash(senha, salt, async (err, hash)=> {
+						if (err) throw err;
+						
+						usuario.senha = hash;
+						await usuario.save()
+						.then(() => {
+							usuario.senha = undefined;
+			        return res.json(usuario);
+
+						})
+						.catch(() => {});
+					});
+				});	
+
     },
     async setEstabelecimento(usuarioId, estabelecimentoId){
         usuario = await Usuario.findOne({_id: usuarioId});

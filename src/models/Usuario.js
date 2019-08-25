@@ -13,6 +13,7 @@ const UsuarioSchema = new Schema({
     },
     senha: {
         type: String,
+				select: false,
         required: true,
     },
     cadastroPessoa: {
