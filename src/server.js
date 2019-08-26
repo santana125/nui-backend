@@ -1,11 +1,14 @@
 const express = require('express');
+require('dotenv').config({path: './src/config/.env'});
+const {DB_USER,
+	   DB_PASS,
+       DB_HOST} = process.env;
 const cors = require('cors');
 const mongoose = require('mongoose');
 
 const routes = require('./routes');
 const app = express();
-
-mongoose.connect('mongodb+srv://nuiadm:KAPMpgyBYJhazyj3@nui-lcjgk.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/test?retryWrites=true&w=majority`, {
     useNewUrlParser:true,
     useCreateIndex: true,
 });

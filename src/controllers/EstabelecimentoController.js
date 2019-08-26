@@ -1,10 +1,16 @@
 const Estabelecimento = require('../models/Estabelecimento');
+const Endereco = require('../models/Endereco');
 
 const UsuarioController = require('../controllers/UsuarioController');
 
 module.exports = {
     async index(req, res){
         estabelecimentos = await Estabelecimento.find();
+
+        estabelecimentos.map( async (estabelecimento) => {
+            estabelecimento.endereco = await Endereco.findById(estabelecimento.EnderecoId);
+            console.log(estabelecimento.endereco);
+        });
 
         return res.json(estabelecimentos);
     },
