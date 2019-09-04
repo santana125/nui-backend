@@ -22,6 +22,7 @@ const EstabelecimentoSchema = new Schema({
     usuarioId: {
         type: Schema.Types.ObjectId,
         ref: 'Usuario',
+        select: false
     },
     enderecoId: {
         type: Schema.Types.ObjectId,

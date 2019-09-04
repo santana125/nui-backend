@@ -10,12 +10,15 @@ module.exports ={
         const {nome, 
                email,
                senha,
+               senha2,
                cadastroPessoa,
                estabelecimentoId} = req.body;
 
         const emailInUse = await Usuario.findOne({email});
         if (emailInUse)
             return res.json({error: "Email já cadastrado."});
+        if (senha !== senha2)
+            return res.json({error: "Senhas não coincidem."});
 
         const usuario = new Usuario({
             nome,
@@ -33,7 +36,7 @@ module.exports ={
 						await usuario.save()
 						.then(() => {
 							usuario.senha = undefined;
-			        return res.json(usuario);
+              return res.json({message: "Usuário cadastrado."});
 
 						})
 						.catch(() => {});

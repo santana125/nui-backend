@@ -4,12 +4,19 @@ const Endereco = require('../models/Endereco');
 const UsuarioController = require('../controllers/UsuarioController');
 
 module.exports = {
+    async show(req, res){
+        const { id } = req.params;
+        estabelecimento = await Estabelecimento.findById(id);
+        if (!estabelecimento)
+          return res.status().json({error: "Estabelecimento não encontrado"});
+        return res.json(estabelecimento);
+  
+    },
     async index(req, res){
-        estabelecimentos = await Estabelecimento.find();
+        estabelecimentos = await Estabelecimento.find().select('_id nome');
 
         estabelecimentos.map( async (estabelecimento) => {
             estabelecimento.endereco = await Endereco.findById(estabelecimento.EnderecoId);
-            console.log(estabelecimento.endereco);
         });
 
         return res.json(estabelecimentos);

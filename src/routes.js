@@ -7,8 +7,9 @@ const routes = express.Router();
 
 routes.post('/usuario', UsuarioController.store);
 routes.post('/estabelecimento', EstabelecimentoController.store);
+routes.get('/estabelecimento/:id', authMiddleware,EstabelecimentoController.show);
 routes.get('/estabelecimentos', authMiddleware,EstabelecimentoController.index);
-routes.get('/login', authController.login);
+routes.post('/login', authController.login);
 
 
 module.exports = routes;
