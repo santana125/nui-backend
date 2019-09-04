@@ -1,7 +1,7 @@
 const Usuario = require('../models/Usuario');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-require('dotenv').config({path: './src/config/.env'});
+//require('dotenv').config({path: './src/config/.env'});
 
 module.exports = {
 	async login(req, res){
@@ -18,7 +18,7 @@ module.exports = {
 				return res.status(401).send({message: "Senha Incorreta."});
 			else {
 				usuario.senha = undefined;
-                const token = jwt.sign({ id: usuario._id }, process.env.SECRET, {
+                const token = jwt.sign({ id: usuario._id }, "secret", {
 					expiresIn:1000,
 				});
         return res.json({token: "Bearer "+token});				

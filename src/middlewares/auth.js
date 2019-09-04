@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config({path: './src/config/.env'});
+//require('dotenv').config({path: './src/config/.env'});
 
 module.exports = (req, res, next) => {
     const authHeader = req.headers.authorization;
@@ -18,7 +18,7 @@ module.exports = (req, res, next) => {
     if(!/^Bearer$/i.test(scheme))
         return res.status(401).send({error: "token malformed"});
 
-    jwt.verify(token, process.env.SECRET, (err, decoded) => {
+    jwt.verify(token, "secret", (err, decoded) => {
         if (err) return res.status(401).send({error: "Invalid Token"});
         
         req.userId = decoded.id;
