@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+import bcrypt from 'bcryptjs'
 const Usuario = require('../models/Usuario');
 
 
@@ -36,8 +36,10 @@ module.exports ={
 						await usuario.save()
 						.then(() => {
 							usuario.senha = undefined;
-              return res.json({message: "Usuário cadastrado."});
-
+              const token = jwt.sign({ id: newUser.id }, "secret", {
+					      expiresIn:1000,
+              });
+              return res.json({message: `Bearer ${token}`});
 						})
 						.catch(() => {});
 					});
