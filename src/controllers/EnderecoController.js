@@ -1,4 +1,4 @@
-const Endereco = require('./models/Endereco');
+const Endereco = require('../models/Endereco');
 
 modlue.exports = {
     async store(req, res){
