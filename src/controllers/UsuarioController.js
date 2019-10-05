@@ -37,7 +37,7 @@ module.exports ={
 						await usuario.save()
 						.then(() => {
 							usuario.senha = undefined;
-              const token = jwt.sign({ id: newUser.id }, "secret", {
+              const token = jwt.sign({ id: usuario.id }, "secret", {
 					      expiresIn:1000,
               });
               return res.json({message: `Bearer ${token}`});
