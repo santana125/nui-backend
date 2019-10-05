@@ -4,26 +4,26 @@ const jwt = require('jsonwebtoken');
 //require('dotenv').config({path: './src/config/.env'});
 
 module.exports = {
-	async login(req, res){
-		const {email, senha} = req.body;
+  async login(req, res){
+    const {email, senha} = req.body;
 
-		const usuario = await Usuario.findOne({email}).select('+senha');
+    const usuario = await Usuario.findOne({email}).select('+senha');
 
-		if (!usuario)
-			return res.status(400).send({message: "Usuario não encontrado."});
-		else{
-			//Comparação de senhas
-			const matchSenha = await bcrypt.compare(senha, usuario.senha);
-			if(!matchSenha)
-				return res.status(401).send({message: "Senha Incorreta."});
-			else {
-				usuario.senha = undefined;
+    if (!usuario)
+      return res.status(400).send({message: "Usuario não encontrado."});
+    else{
+      //Comparação de senhas
+      const matchSenha = await bcrypt.compare(senha, usuario.senha);
+      if(!matchSenha)
+        return res.status(401).send({message: "Senha Incorreta."});
+      else {
+        usuario.senha = undefined;
                 const token = jwt.sign({ id: usuario._id }, "secret", {
-					expiresIn:1000,
-				});
-        return res.json({token: "Bearer "+token});				
-			}
-		}
-	}
+          expiresIn:1000,
+        });
+            return res.json({token: "Bearer "+token});				
+      }
+    }
+  }
 
 }
