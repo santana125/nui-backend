@@ -1,6 +1,6 @@
 const Endereco = require('../models/Endereco');
 
-modlue.exports = {
+module.exports = {
     async store(req, res){
       const { endereco, cidade, numero, cep, estado } = req.body
       const {usuario_id} = req
