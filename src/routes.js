@@ -7,6 +7,7 @@ const authMiddleware = require('./middlewares/auth');
 const routes = express.Router();
 
 routes.post('/usuario', UsuarioController.store);
+routes.patch('/concluirInscricao', authMiddleware, UsuarioController.finishSignup);
 routes.post('/estabelecimento', EstabelecimentoController.store);
 routes.post('/endereco', authMiddleware, EnderecoController.store);
 routes.patch('/endereco', authMiddleware, EnderecoController.update);
