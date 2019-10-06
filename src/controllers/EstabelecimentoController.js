@@ -7,7 +7,8 @@ const UsuarioController = require('../controllers/UsuarioController');
 module.exports = {
     async show(req, res){
         const { id } = req.params;
-        estabelecimento = await Estabelecimento.findById(id);
+        estabelecimento = await Estabelecimento.findById(id)
+        .populate('endereco')
         if (!estabelecimento)
           return res.status().json({error: "Estabelecimento não encontrado"});
         return res.json(estabelecimento);
@@ -24,26 +25,24 @@ module.exports = {
     async store(req, res){
         const { nome,
                 telefone,
-                cor,
-                enderecoId, } = req.body;
+                cor} = req.body;
+        if (!nome || !telefone || !telefone)
+            return res.status(400).json({message: "Faltam dados."})
 
         const { usuario_id } = req.headers;
         const estabelecimento = await Estabelecimento.create({
                 nome,
                 telefone,
                 cor,
-                usuarioId: usuario_id,
-                enderecoId });        
+                usuarioId: usuario_id,});        
         
         UsuarioController.setEstabelecimento(usuario_id, estabelecimento._id);
         return res.json(estabelecimento);
     },
     async setEndereco(usuarioId, enderecoId){
         usuario = await Usuario.findOne({_id: usuarioId});
-        console.log(usuario._id)
         if (usuario){
             var estabelecimento = await Estabelecimento.findById(usuario.estabelecimentoId);
-            console.log(estabelecimento)
             if(estabelecimento){
                 estabelecimento.enderecoId = enderecoId;
                 await estabelecimento.save();

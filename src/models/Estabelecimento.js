@@ -19,16 +19,16 @@ const EstabelecimentoSchema = new Schema({
     valor: {
         type: Number,
     },
-    usuarioId: {
+    usuario: {
         type: Schema.Types.ObjectId,
         ref: 'Usuario',
         select: false
     },
-    enderecoId: {
+    endereco: {
         type: Schema.Types.ObjectId,
         ref: 'Endereco'
     },
-    servicosId: [{
+    servicos: [{
         type: Schema.Types.ObjectId,
         ref: 'Servico'
     }],

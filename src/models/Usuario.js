@@ -20,7 +20,7 @@ const UsuarioSchema = new Schema({
         type: String,
         required: true,
     },
-    estabelecimentoId: {
+    estabelecimento: {
         type: Schema.Types.ObjectId,
         ref: 'Estabelecimento',
     },

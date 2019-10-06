@@ -7,6 +7,9 @@ module.exports = {
       const { endereco, cidade, numero, cep, estado } = req.body
       const {usuario_id} = req
       
+      if(!endereco || !cidade || !numero || !cep || !estado)
+        return res.status(400).json({message: "Faltam dados."})
+
       const newEndereco = new Endereco({
         endereco,
         cidade,
@@ -26,14 +29,11 @@ module.exports = {
   async update(req, res) {
     const { endereco, cidade, numero, cep, estado } = req.body
     const {usuario_id} = req
-    console.log(usuario_id)
+    if(!endereco || !cidade || !numero || !cep || !estado)
+      return res.status(400).json({message: "Faltam dados."})
     const estabelecimento = await Estabelecimento.findOne({usuarioId: usuario_id})
-    if (estabelecimento)
-      console.log("found")
-    else{
-      console.log("error")
+    if (!estabelecimento)
       return res.status(400).json({message: "Erro ao atualizar endereço."})
-    }
     const enderecoAtual = await Endereco.findById(estabelecimento.enderecoId)
 
     if(enderecoAtual){
