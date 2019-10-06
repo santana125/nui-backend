@@ -43,11 +43,12 @@ module.exports = {
       enderecoAtual.cep = cep
       enderecoAtual.estado = estado
 
-      await enderecoAtual.save(function(err, task) {
-      if(err) {
-        res.send(err);
-      }
-      res.json(task);)
+      await enderecoAtual.save(function(err, enderecoAtual) {
+        if(err) {
+          res.send(err);
+        }
+        res.json(enderecoAtual);
+      )
       return res.json({message: "Endereço atualizado."})
     }
   }
