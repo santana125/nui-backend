@@ -29,10 +29,10 @@ module.exports = {
     console.log(usuario_id)
     const estabelecimento = await Estabelecimento.findOne({usuarioId: usuario_id})
     if (estabelecimento)
-      console.log(estabelecimento)
+      console.log("found")
     else{
       console.log("error")
-      return res.status(400).json({message: "Erro ao cadastrar endereço."})
+      return res.status(400).json({message: "Erro ao atualizar endereço."})
     }
     const enderecoAtual = Endereco.findById(estabelecimento.enderecoId)
 
@@ -43,14 +43,6 @@ module.exports = {
       enderecoAtual.cep = cep
       enderecoAtual.estado = estado
       await enderecoAtual.save()
-      .then (() =>{
-        console.log('Worked')
-      })
-      .catch (() => {
-        console.log('do not Worked')
-
-      })
-
     }
   }
 }
