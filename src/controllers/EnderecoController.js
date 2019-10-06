@@ -34,17 +34,18 @@ module.exports = {
       console.log("error")
       return res.status(400).json({message: "Erro ao atualizar endereço."})
     }
-    const enderecoAtual = Endereco.findById(estabelecimento.enderecoId)
+    const enderecoAtual = await Endereco.findById(estabelecimento.enderecoId)
 
     if(enderecoAtual){
-      console.log(enderecoAtual._id)
-      console.log(enderecoAtual.cep)
       enderecoAtual.endereco = endereco
       enderecoAtual.cidade = cidade
       enderecoAtual.numero = numero 
       enderecoAtual.cep = cep
       enderecoAtual.estado = estado
-      console.log(enderecoAtual.cep)
+      
+      await enderecoAtual.save()
+      .then(() => {console.log('Worth')})
+      .catch(()=>{console.log('WTF')})
       return res.json({message: "Endereço atualizado."})
     }
   }
