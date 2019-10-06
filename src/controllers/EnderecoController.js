@@ -15,7 +15,8 @@ module.exports = {
       })
       await newEndereco.save()
       .then(() => {
-        if (Estabelecimento.setEndereco(usuario_id, newEndereco._id))
+        const response = await Estabelecimento.setEndereco(usuario_id, newEndereco._id)
+        if (response)
           return res.json({message: "Endereço cadastrado."})
         else
           return res.status(400).json({message: "Erro ao cadastrar endereço."})
