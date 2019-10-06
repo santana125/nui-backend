@@ -41,9 +41,10 @@ module.exports = {
     async setEndereco(usuarioId, enderecoId){
         usuario = await Usuario.findOne({_id: usuarioId});
         if (usuario){
-            const estabelecimento = await Estabelecimento.findById(usuario.estabelecimentoId);
-            estabelecimento.enderecoId = enderecoId;
-            await estabelecimento.save();
+            var estabelecimento = await Estabelecimento.findById(usuario.estabelecimentoId);
+            if(estabelecimento){
+                estabelecimento.enderecoId = enderecoId;
+                await estabelecimento.save();
             return true;
         } else {
             return false;
