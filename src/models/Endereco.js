@@ -24,11 +24,9 @@ const EnderecoSchema = new Schema({
     },  
     lat: {
         type: Number,
-        required: true,
     },  
     lon: {
         type: Number,
-        required: true,
     },  
 
 },{timeStamps: true,});
