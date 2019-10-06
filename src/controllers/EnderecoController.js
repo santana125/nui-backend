@@ -37,18 +37,13 @@ module.exports = {
     const enderecoAtual = Endereco.findById(estabelecimento.enderecoId)
 
     if(enderecoAtual){
+      console.log(enderecoAtual)
       enderecoAtual.endereco = endereco
       enderecoAtual.cidade = cidade
       enderecoAtual.numero = numero 
       enderecoAtual.cep = cep
       enderecoAtual.estado = estado
-
-      await enderecoAtual.save(function(err, enderecoAtual) {
-        if(err) {
-          res.send(err);
-        }
-        res.json(enderecoAtual);
-      })
+      console.log(enderecoAtual)
       return res.json({message: "Endereço atualizado."})
     }
   }
