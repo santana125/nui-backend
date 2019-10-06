@@ -48,7 +48,7 @@ module.exports = {
           res.send(err);
         }
         res.json(enderecoAtual);
-      )
+      })
       return res.json({message: "Endereço atualizado."})
     }
   }
