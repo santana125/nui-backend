@@ -27,13 +27,13 @@ module.exports = {
     const { endereco, cidade, numero, cep, estado } = req.body
     const {usuario_id} = req
     console.log(usuario_id)
-    const estabelecimento = await Estabelecimento.findOne({usuarioID: usuario_id})
+    const estabelecimento = await Estabelecimento.findOne({usuarioId: usuario_id})
     if (estabelecimento)
       console.log(estabelecimento)
-    else
+    else{
       console.log("error")
       return res.status(400).json({message: "Erro ao cadastrar endereço."})
-
+    }
     const enderecoAtual = Endereco.findById(estabelecimento.enderecoId)
 
     if(enderecoAtual){
