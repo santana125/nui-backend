@@ -26,7 +26,7 @@ module.exports = {
   async update(req, res) {
     const { endereco, cidade, numero, cep, estado } = req.body
     const {usuario_id} = req
-    estabelecimento = await Estabelecimento.findOne({usuarioID: usuario_id})
+    const estabelecimento = await Estabelecimento.findOne({usuarioID: usuario_id})
     const enderecoAtual = Endereco.findById(estabelecimento.enderecoId)
 
     if(enderecoAtual){
