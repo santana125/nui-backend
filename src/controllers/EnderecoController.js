@@ -42,7 +42,9 @@ module.exports = {
       enderecoAtual.numero = numero 
       enderecoAtual.cep = cep
       enderecoAtual.estado = estado
-      await enderecoAtual.save();
+      await enderecoAtual.save()
+      .then(() => {console.log('Worth')})
+      .catch(()=>{console.log('WTF')})
       return res.json({message: "Endereço atualizado."})
     }
   }
