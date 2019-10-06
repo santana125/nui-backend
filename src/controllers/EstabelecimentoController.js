@@ -43,6 +43,7 @@ module.exports = {
         console.log(usuario._id)
         if (usuario){
             var estabelecimento = await Estabelecimento.findById(usuario.estabelecimentoId);
+            console.log(estabelecimento)
             if(estabelecimento){
                 estabelecimento.enderecoId = enderecoId;
                 console.log(`Saving address: ${enderecoId} to ${estabelecimento.enderecoId}`)
