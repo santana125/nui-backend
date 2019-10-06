@@ -19,7 +19,7 @@ module.exports = {
       else {
         usuario.senha = undefined;
                 const token = jwt.sign({ id: usuario._id }, "secret", {
-          expiresIn:1000,
+          expiresIn:20000,
         });
             return res.json({token: "Bearer "+token});				
       }

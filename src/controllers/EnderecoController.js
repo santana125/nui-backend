@@ -1,5 +1,6 @@
 const Endereco = require('../models/Endereco');
-const Estabelecimento = require('../controllers/EstabelecimentoController');
+const EstabelecimentoController = require('../controllers/EstabelecimentoController');
+const Estabelecimento = require('../models/Estabelecimento');
 
 module.exports = {
     async store(req, res){
@@ -15,7 +16,7 @@ module.exports = {
       })
       await newEndereco.save()
       .then(async () => {
-        const response = await Estabelecimento.setEndereco(usuario_id, newEndereco._id)
+        const response = await EstabelecimentoController.setEndereco(usuario_id, newEndereco._id)
         if (response)
           return res.json({message: "Endereço cadastrado."})
         else
