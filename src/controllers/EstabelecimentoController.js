@@ -44,6 +44,7 @@ module.exports = {
             var estabelecimento = await Estabelecimento.findById(usuario.estabelecimentoId);
             if(estabelecimento){
                 estabelecimento.enderecoId = enderecoId;
+                console.log(`Saving address: ${enderecoId} to ${estabelecimento.enderecoId}`)
                 await estabelecimento.save();
             }else
                 return false
