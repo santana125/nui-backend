@@ -1,4 +1,5 @@
 const Endereco = require('../models/Endereco');
+const Estabelecimento = require('../controllers/EstabelecimentoController');
 
 module.exports = {
     async store(req, res){
@@ -14,7 +15,8 @@ module.exports = {
       })
       await newEndereco.save()
       .then(() => {
-        return res.json({message: `${usuario_id}`})
+        Estabelecimento.setEndereco(usuario_id, newEndereco._id)
+
       })
 
   }

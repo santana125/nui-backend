@@ -10,7 +10,6 @@ module.exports = {
         if (!estabelecimento)
           return res.status().json({error: "Estabelecimento não encontrado"});
         return res.json(estabelecimento);
-  
     },
     async index(req, res){
         estabelecimentos = await Estabelecimento.find().select('_id nome');
@@ -28,8 +27,6 @@ module.exports = {
                 enderecoId, } = req.body;
 
         const { usuario_id } = req.headers;
-        console.log(req.headers);
-        console.log(usuario_id);
         const estabelecimento = await Estabelecimento.create({
                 nome,
                 telefone,
@@ -40,4 +37,16 @@ module.exports = {
         UsuarioController.setEstabelecimento(usuario_id, estabelecimento._id);
         return res.json(estabelecimento);
     },
+    async setEndereco(usuarioId, enderecoId){
+        usuario = await Usuario.findOne({_id: usuarioId});
+
+        if (usuario){
+            const estabelecimento = await Estabelecimento.findById(usuario.estabelecimentoId);
+            estabelecimento.enderecoId = enderecoId;
+            await estabelecimento.save();
+            return true;
+        } else {
+            return false;
+        }
+      }
 };
