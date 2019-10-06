@@ -24,6 +24,10 @@ const UsuarioSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Estabelecimento',
     },
+    status: {
+        type: Number,
+        default: 0
+    }
 },{timeStamps: true,});
 
 module.exports = model('Usuario', UsuarioSchema);

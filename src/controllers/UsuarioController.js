@@ -12,8 +12,7 @@ module.exports ={
                email,
                senha,
                senha2,
-               cadastroPessoa,
-               estabelecimentoId} = req.body;
+               cadastroPessoa,} = req.body;
 
         const emailInUse = await Usuario.findOne({email});
         if (emailInUse)
@@ -26,7 +25,6 @@ module.exports ={
             email,
             senha,
             cadastroPessoa,
-            estabelecimentoId,
         });
 
 				bcrypt.genSalt(10, (err, salt) => {
@@ -51,7 +49,7 @@ module.exports ={
         usuario = await Usuario.findOne({_id: usuarioId});
 
         if (usuario){
-            usuario.estabelecimentoId = estabelecimentoId;
+            usuario.estabelecimento = estabelecimentoId;
             await usuario.save();
             return true;
         } else {
