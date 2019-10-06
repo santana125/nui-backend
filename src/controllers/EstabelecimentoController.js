@@ -1,5 +1,6 @@
 const Estabelecimento = require('../models/Estabelecimento');
 const Endereco = require('../models/Endereco');
+const Usuario = require('../models/Usuario');
 
 const UsuarioController = require('../controllers/UsuarioController');
 
@@ -39,7 +40,6 @@ module.exports = {
     },
     async setEndereco(usuarioId, enderecoId){
         usuario = await Usuario.findOne({_id: usuarioId});
-
         if (usuario){
             const estabelecimento = await Estabelecimento.findById(usuario.estabelecimentoId);
             estabelecimento.enderecoId = enderecoId;
