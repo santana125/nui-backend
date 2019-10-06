@@ -45,7 +45,8 @@ module.exports = {
             if(estabelecimento){
                 estabelecimento.enderecoId = enderecoId;
                 await estabelecimento.save();
-            }
+            }else
+                return false
             return true;
         } else {
             return false;
