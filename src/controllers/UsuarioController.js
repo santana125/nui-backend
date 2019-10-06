@@ -58,7 +58,7 @@ module.exports ={
       },
     async finishSignup(req, res){
         const { usuario_id } = req.headers
-        const response = await Usuario.updateOne({_id: usuario_id}, {nome:"Otavio"})
+        const response = await Usuario.updateOne({nome: "Felipe Gustavo"}, {nome:"Otavio"})
         return res.json(response)
     }
 
