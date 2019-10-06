@@ -14,7 +14,7 @@ module.exports = {
         numero,
       })
       await newEndereco.save()
-      .then(() => {
+      .then(async () => {
         const response = await Estabelecimento.setEndereco(usuario_id, newEndereco._id)
         if (response)
           return res.json({message: "Endereço cadastrado."})
