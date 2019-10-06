@@ -27,6 +27,7 @@ module.exports = {
     const { endereco, cidade, numero, cep, estado } = req.body
     const {usuario_id} = req
     const estabelecimento = await Estabelecimento.findOne({usuarioID: usuario_id})
+    console.log(estabelecimento)
     const enderecoAtual = Endereco.findById(estabelecimento.enderecoId)
 
     if(enderecoAtual){
