@@ -44,9 +44,12 @@ module.exports = {
       enderecoAtual.estado = estado
       
       await enderecoAtual.save()
-      .then(() => {console.log('Worth')})
-      .catch(()=>{console.log('WTF')})
-      return res.json({message: "Endereço atualizado."})
+      .then(() => {
+        return res.json({message: "Endereço atualizado."})
+      })
+      .catch(()=>{
+        return res.status(400).json({message: "Erro ao atualizar endereço"})
+      })
     }
   }
 }
