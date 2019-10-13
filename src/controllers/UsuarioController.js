@@ -5,8 +5,8 @@ const Usuario = require('../models/Usuario');
 
 module.exports ={
     async index(req, res){
-        const {user_id} = req;
-        const user = await Usuario.findById(user_id);
+        const {usuario_id} = req;
+        const user = await Usuario.findById(usuario_id);
         return res.json(user);
     },
     async store(req, res){
@@ -60,7 +60,6 @@ module.exports ={
       },
     async finishSignup(req, res){
         const { usuario_id } = req
-        console.log(usuario_id)
         const response = await Usuario.updateOne({_id: usuario_id}, {status: 1})
         return res.json(response)
     }
