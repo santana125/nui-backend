@@ -5,7 +5,9 @@ const Usuario = require('../models/Usuario');
 
 module.exports ={
     async index(req, res){
-        return res.json({error: "Não Implementado."});
+        const {user_id} = req;
+        const user = await Usuario.findById(user_id);
+        return res.json(user);
     },
     async store(req, res){
         const {nome, 
