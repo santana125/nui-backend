@@ -23,7 +23,7 @@ module.exports = {
         if (response)
           return res.json({message: "Endereço cadastrado."})
         else
-          return res.status(400).json({message: "Erro ao cadastrar endereço."})
+          return res.status(400).json({message: "Erro ao cadastrar endereço." })
       })
   },
   async update(req, res) {

@@ -15,9 +15,21 @@ const EstabelecimentoSchema = new Schema({
     },
     nota: {
         type: Number,
+        default: 3
     },
     valor: {
         type: Number,
+        default: 3
+    },
+    avatar: {
+        type: String,
+    },
+    background: {
+        type: String,
+    },
+    is_opened: {
+        type: Boolean,
+        default: true
     },
     usuario: {
         type: Schema.Types.ObjectId,

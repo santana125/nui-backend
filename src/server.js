@@ -8,6 +8,7 @@ mongoose.connect('mongodb+srv://nuiadm:KL1CAemvcW14l3gR@nui-lcjgk.mongodb.net/te
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static('public'));
 app.use(routes);
 
 

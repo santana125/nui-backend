@@ -18,9 +18,9 @@ module.exports ={
 
         const emailInUse = await Usuario.findOne({email});
         if (emailInUse)
-            return res.json({error: "Email já cadastrado."});
+            return res.json({message: "Email já cadastrado."});
         if (senha !== senha2)
-            return res.json({error: "Senhas não coincidem."});
+            return res.json({message: "Senhas não coincidem."});
 
         const usuario = new Usuario({
             nome,
@@ -48,7 +48,7 @@ module.exports ={
 
     },
     async setEstabelecimento(usuarioId, estabelecimentoId){
-        usuario = await Usuario.findOne({_id: usuarioId});
+        usuario = await Usuario.findById(usuarioId);
 
         if (usuario){
             usuario.estabelecimento = estabelecimentoId;
