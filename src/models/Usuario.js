@@ -20,6 +20,9 @@ const UsuarioSchema = new Schema({
         type: String,
         required: true,
     },
+    avatar: {
+        type: String,
+    },
     estabelecimento: {
         type: Schema.Types.ObjectId,
         ref: 'Estabelecimento',

@@ -38,9 +38,7 @@ module.exports = {
                 usuarioId: usuario_id,});
         estabelecimento.avatar = req.files.avatar[0].url
         estabelecimento.background = req.files.background[0].url
-        console.log(estabelecimento)
         await estabelecimento.save()
-        console.log(req.files.avatar[0].url)
         UsuarioController.setEstabelecimento(usuario_id, estabelecimento._id);
         return res.json(estabelecimento);
     },
