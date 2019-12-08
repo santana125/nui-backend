@@ -1,22 +1,30 @@
 const {Schema, model} = require('mongoose');
 
 const ServicoSchema = new Schema({
-    titulo: {
+    nome: {
         type: String,
         required: true,
     },
     descricao: {
         type: String,
-        required: true,
     },
     categoria: {
         type: String,
         required: true,
     },
-    tempoEstimado: {
+    tempo: {
         type: Number,
         required: true,
     },
+    preco: {
+        type: Number,
+        required: true,
+    },
+    estabelecimentoId: {
+        type: Schema.Types.ObjectId,
+        ref: "Estabelecimento",
+        required: true
+      },
 },{timeStamps: true,});
 
 

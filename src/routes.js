@@ -3,6 +3,8 @@ const UsuarioController = require('./controllers/UsuarioController');
 const EstabelecimentoController = require('./controllers/EstabelecimentoController');
 const EnderecoController = require('./controllers/EnderecoController');
 const authController = require('./controllers/authController');
+const ServicoController = require('./controllers/ServicoController');
+const AgendamentoController = require('./controllers/AgendamentoController');
 const authMiddleware = require('./middlewares/auth');
 const routes = express.Router();
 const multer = require('multer');
@@ -48,11 +50,14 @@ routes.post('/usuario', multer(multerConfig).single('avatar'), UsuarioController
 routes.post('/me/finish', authMiddleware, UsuarioController.finishSignup);
 routes.get('/me', authMiddleware, UsuarioController.index);
 routes.patch('/concluirInscricao', authMiddleware, UsuarioController.finishSignup);
-routes.post('/estabelecimento', multer(multerConfig).fields([{ name: 'avatar', maxCount: 1 }, { name: 'background', maxCount: 1 }]), authMiddleware, EstabelecimentoController.store);
 routes.post('/endereco', authMiddleware, EnderecoController.store);
+routes.post('/servico', authMiddleware, ServicoController.store);
 routes.patch('/endereco', authMiddleware, EnderecoController.update);
-routes.get('/estabelecimento/:id', authMiddleware,EstabelecimentoController.show);
-routes.get('/estabelecimentos', authMiddleware,EstabelecimentoController.index);
+routes.post('/agendamento', authMiddleware, AgendamentoController.store);
+routes.post('/horarioslivres', authMiddleware, AgendamentoController.index);
+routes.post('/estabelecimento', multer(multerConfig).fields([{ name: 'avatar', maxCount: 1 }, { name: 'background', maxCount: 1 }]), authMiddleware, EstabelecimentoController.store);
+routes.get('/estabelecimento/:id', authMiddleware, EstabelecimentoController.show);
+routes.get('/estabelecimentos', authMiddleware, EstabelecimentoController.index);
 routes.post('/login', authController.login);
 
 

@@ -9,13 +9,13 @@ module.exports = {
         const { id } = req.params;
         estabelecimento = await Estabelecimento.findById(id)
         .populate('endereco')
+        .populate('servicos')
         if (!estabelecimento)
           return res.status().json({error: "Estabelecimento não encontrado"});
         return res.json(estabelecimento);
     },
     async index(req, res){
         estabelecimentos = await Estabelecimento.find().select('_id nome avatar is_opened valor nota').populate('endereco');
-        console.log(estabelecimentos[0])
         estabelecimentos.map( async (estabelecimento) => {
             estabelecimento.endereco = await Endereco.findById(estabelecimento.EnderecoId);
         });
@@ -48,6 +48,21 @@ module.exports = {
             var estabelecimento = await Estabelecimento.findById(usuario.estabelecimento);
             if(estabelecimento){
                 estabelecimento.endereco = enderecoId;
+                await estabelecimento.save();
+            }else{
+                return false
+            }
+            return true;
+        } else {
+            return false;
+        }
+      },
+      async setServico(usuarioId, servicoId){
+        usuario = await Usuario.findOne({_id: usuarioId});
+        if (usuario){
+            var estabelecimento = await Estabelecimento.findById(usuario.estabelecimento);
+            if(estabelecimento){
+                estabelecimento.servicos.push(servicoId)
                 await estabelecimento.save();
             }else{
                 return false
